@@ -1,0 +1,4 @@
+/build
+
+# 个人私有的默认提示词（debug 构建使用），不上传 GitHub
+src/main/assets/default_prompt.txt

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WxADT</string>
+
+    <string-array name="xposedscope">
+        <item>com.tencent.mm</item>
+        <item>com.plug.wxadt</item>
+    </string-array>
+</resources>
