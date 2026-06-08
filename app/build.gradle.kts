@@ -34,6 +34,19 @@ android {
         buildConfig = true
     }
 
+    signingConfigs {
+        create("release") {
+            // CI 环境：从环境变量读取（GitHub Actions Secrets）
+            val ksFile = System.getenv("KEYSTORE_FILE")
+            if (ksFile != null) {
+                storeFile = file(ksFile)
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+            }
+        }
+    }
+
     buildTypes {
         debug {
             // debug 构建：从 local.properties 读取私人默认值
@@ -48,6 +61,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
             // release 构建：不内置任何私人信息，用户自行在面板中填写
             buildConfigField("String", "DEFAULT_AI_KEY", "\"\"")
             buildConfigField("String", "DEFAULT_VOICE_URL", "\"http://localhost:8000/convert\"")

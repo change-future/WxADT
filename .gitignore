@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+*.jks
+*.b64.txt
